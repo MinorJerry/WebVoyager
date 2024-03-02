@@ -1,0 +1,87 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Search Apple for the accessory Smart Folio for iPad and check the closest pickup availability next to zip code 90038.  Please interact with https://www.apple.com/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To begin the task, I must navigate to the accessories section of the Apple website, where I can search for the Smart Folio for iPad.\n\nAction: Click [10]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search function appears to be available now. I should use the <input> field [17] to type and search for \"Smart Folio for iPad\".\n\nAction: Type [17]; Smart Folio for iPad"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The Smart Folio for iPad Pro and Smart Folio for iPad (10th generation) are among the search results. Since there is no specific generation of iPad mentioned in the task, I will choose the Smart Folio for the 10th generation iPad as it is the more general option, not limited to the iPad Pro model.\n\nAction: Click [46]"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"Apple\";\t[1]: \"Store\";\t[2]: \"Mac\";\t[3]: \"iPad\";\t[4]: \"iPhone\";\t[5]: \"Watch\";\t[6]: \"Vision\";\t[7]: \"AirPods\";\t[8]: \"TV & Home\", \"TV and Home\";\t[9]: \"Entertainment\";\t[10]: \"Accessories\";\t[11]: \"Support\";\t[14]: \"iPad Accessories\";\t[15]: \"Browse all\";\t[16]: \"Learn more\", \"Learn more about apple card monthly Instalments\";\t[17]: <button> \"Get 3% Daily Cash with Apple Card\";\t[20]: \"White\";\t[22]: <button> \"Apple Valley Fair\";\t[23]: <button> \"95050(Get Delivery Dates)\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The current screenshot shows the Smart Folio for the iPad (10th generation) - White. There is an option to choose a store for pickup, which seems to be \"Apple Valley Fair\". However, this is not the correct location based on the given zip code (90038). I need to find an option to check for availability at a location closer to the specified zip code.\n\nAction: Click [22]"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <input> \"\";\t[1]: <button> \"Reset\";\t[2]: <button> \"Search\";\t[5]: \"Apple Valley Fair\";\t[6]: \"Santa Clara\";\t[7]: \"1.74 mi\";\t[8]: \"Available Tue, Jan 16\";\t[9]: \"In-Store Pickup\";\t[11]: \"Apple Park Visitor Center\";\t[12]: \"Cupertino\";\t[13]: \"2.98 mi\";\t[14]: \"Available Today\";\t[15]: \"In-Store Pickup\";\t[17]: \"Apple Oakridge\";\t[18]: \"San Jose\";\t[19]: \"8.41 mi\";\t[20]: \"Available Today\";\t[21]: \"In-Store Pickup\";\t[23]: \"Apple Los Gatos\";\t[24]: \"Los Gatos\";\t[25]: \"Available Today\";\t[26]: \"More Information(Opens in a new window)\";\t[27]: <button> \"Close\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There is a search box for entering a city or zip code to find the closest pickup location. I need to enter the specified zip code (90038) to find the closest Apple Store for pickup availability of the Smart Folio for iPad.\n\nAction: Type [0]; 90038"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <input> \"\";\t[1]: <button> \"Reset\";\t[2]: <button> \"Search\";\t[5]: \"Apple Tower Theatre\";\t[6]: \"Los Angeles\";\t[7]: \"0.98 mi\";\t[8]: \"Available Tue, Jan 16\";\t[9]: \"In-Store Pickup\";\t[11]: \"Apple The Americana at Brand\";\t[12]: \"Glendale\";\t[13]: \"6.32 mi\";\t[14]: \"Available Tue, Jan 16\";\t[15]: \"In-Store Pickup\";\t[17]: \"Apple Glendale Galleria\";\t[18]: \"Glendale\";\t[19]: \"6.4 mi\";\t[20]: \"Available Tue, Jan 16\";\t[21]: \"In-Store Pickup\";\t[23]: \"Apple The Grove\";\t[24]: \"More Information(Opens in a new window)\";\t[25]: <button> \"Close\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The closest pickup availability for the Smart Folio for iPad (10th generation) is at Apple Tower Theatre in Los Angeles, which is 0.98 miles away from the zip code 90038. The item is available for in-store pickup on Tuesday, January 16.\n\nAction: ANSWER; The closest pickup availability for the Smart Folio for iPad (10th generation) near zip code 90038 is at Apple Tower Theatre in Los Angeles, with the item available for in-store pickup on Tuesday, January 16."
+  }
+]

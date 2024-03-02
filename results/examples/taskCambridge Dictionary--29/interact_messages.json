@@ -1,0 +1,135 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Go to the Plus section of Cambridge Dictionary, find Image quizzes and do an easy quiz about Animals and tell me your final score.  Please interact with https://dictionary.cambridge.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The Plus section of the Cambridge Dictionary is likely to be represented by \"Cambridge Dictionary +Plus\" in the image, even though there's no direct numerical label pointing to it. The Plus section is possibly accessible through the promotional ad-like element with the text \"Free word lists and quizzes to create, download and share!\" Since it's part of the main content and distinct from the other labeled elements like \"Dictionary\" or \"Translate\", it seems to be the correct pathway to access the Plus section.\n\nAction: Click [24]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: There is a direct link to the Plus section of the Cambridge Dictionary indicated by the label \"Go to + Plus\". This option will likely navigate directly to the Plus section where we can find the Image Quizzes.\n\nAction: Click [25]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot shows a section of the Cambridge Dictionary +Plus page, but the content displayed seems to be for a game called \"Word Scramble,\" which is not the target content. Since we are looking for Image quizzes about Animals, we need to find a way to navigate to this particular quiz section. A promising interactive element is [21] labeled as \"Contents,\" which could potentially provide links to different sections of the +Plus area, including Image quizzes. \n\nAction: Click [21]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The menu has appeared and includes the option \"Image quizzes,\" which is exactly what we are looking for according to the task. Clicking this menu item should lead us directly to the section where we can find an easy quiz about animals.\n\nAction: Click [3]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot shows the Image quizzes section with a subsection titled \"Animals\". To fulfill the task, I should select an easy quiz related to animals. The difficulty levels are indicated above the subsections, with \"Easy\" being one of the options. It is important to note that although there is no numerical label that explicitly states \"Easy\", selecting the first quiz under the \"Animals\" subsection is likely to correspond with the easy difficulty level.\n\nAction: Click [22]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot indicates that the quiz has started and the current question is asking \"Which word matches the image?\" The image shown is that of an elephant, and since one of the options provided is \"elephant,\" it is the correct answer to choose.\n\nAction: Click [25]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The second question of the quiz is displayed with the image of a lion. The options provided are \"elephant,\" \"mouse,\" and \"lion.\" The correct answer that matches the image is \"lion.\"\n\nAction: Click [27]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The quiz image depicts a sheep. The options available are \"cat,\" \"sheep,\" and \"horse.\" To answer the question correctly, \"sheep\" should be selected since it matches the image.\n\nAction: Click [26]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The quiz image shows a rat. Among the given options\u2014\"rat,\" \"bear,\" and \"horse\"\u2014the correct answer is \"rat,\" as it corresponds with the image shown.\n\nAction: Click [25]"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[2]: \"Dictionary\";\t[3]: \"Translate\";\t[8]: \"Log in\";\t[9]: \"Sign up\";\t[11]: \"English (UK)\";\t[13]: \"Search\";\t[14]: <input> \"Search\";\t[16]: <button> \"English\", \"Choose a dictionary\";\t[17]: <button> \"Search\";\t[18]: \"Grammar\", \"Set dictionary search to Grammar\";\t[19]: \"English\u2013Spanish\", \"Set dictionary search to English\u2013Spanish\";\t[20]: \"Spanish\u2013English\", \"Set dictionary search to Spanish\u2013English\";\t[21]: \"+Plus\";\t[22]: \"Image quizzes\";\t[23]: <button> \"Go back\";\t[24]: <button> \"Next\";\t[25]: \"mouse\";\t[26]: \"rabbit\";\t[27]: \"cat\";\t[28]: \"Sign up\";\t[29]: \"Log in\";\t[30]: \"To top\";\t[33]: \"Contents\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The quiz image shows a cat. The options provided are \"mouse,\" \"rabbit,\" and \"cat.\" The correct option to match the image is \"cat.\"\n\nAction: Click [27]"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[2]: \"Dictionary\";\t[3]: \"Translate\";\t[8]: \"Log in\";\t[9]: \"Sign up\";\t[11]: \"English (UK)\";\t[13]: \"Search\";\t[14]: <input> \"Search\";\t[16]: <button> \"English\", \"Choose a dictionary\";\t[17]: <button> \"Search\";\t[18]: \"Grammar\", \"Set dictionary search to Grammar\";\t[19]: \"English\u2013Spanish\", \"Set dictionary search to English\u2013Spanish\";\t[20]: \"Spanish\u2013English\", \"Set dictionary search to Spanish\u2013English\";\t[21]: \"+Plus\";\t[22]: \"Image quizzes\";\t[23]: <button> \"Go back\";\t[24]: <button> \"Next\";\t[25]: \"horse\";\t[26]: \"mouse\";\t[27]: \"cat\";\t[28]: \"Sign up\";\t[29]: \"Log in\";\t[30]: \"To top\";\t[33]: \"Contents\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The final question of the quiz shows an image of a mouse. Among the options available, \"mouse\" is the correct answer that matches the image.\n\nAction: Click [26]"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[2]: \"Dictionary\";\t[3]: \"Translate\";\t[8]: \"Log in\";\t[9]: \"Sign up\";\t[11]: \"English (UK)\";\t[13]: \"Search\";\t[14]: <input> \"Search\";\t[16]: <button> \"English\", \"Choose a dictionary\";\t[17]: <button> \"Search\";\t[18]: \"Grammar\", \"Set dictionary search to Grammar\";\t[19]: \"English\u2013Spanish\", \"Set dictionary search to English\u2013Spanish\";\t[20]: \"Spanish\u2013English\", \"Set dictionary search to Spanish\u2013English\";\t[21]: \"+Plus\";\t[22]: \"Image quizzes\";\t[23]: \"See my answers\";\t[24]: \"Try again\";\t[25]: \"next quiz\";\t[26]: \"image quizzes\";\t[27]: \"Sign up\";\t[28]: \"Log in\";\t[29]: \"To top\";\t[32]: \"Contents\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The quiz has been completed with a final score of 6 out of 6, which is a perfect score.\n\nAction: ANSWER; The final score on the easy Animals quiz is 6 out of 6."
+  }
+]

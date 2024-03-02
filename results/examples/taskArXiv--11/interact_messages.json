@@ -1,0 +1,95 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: For Non-English submissions, do I need to provide a multi-language abstract, if need, answer the separator between the multiple abstracts.  Please interact with https://arxiv.org/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To get the information on whether a multi-language abstract is required for Non-English submissions, we need to find relevant guidelines or help pages on the arXiv website. The best way to obtain this information is probably through the help section or an FAQ that might be listed there. The search input with the label 4 is likely the most appropriate interaction to find this kind of information.\n\nAction: Click [5]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The section that would likely contain information about submission requirements, including whether a multi-language abstract is needed, would be under 'Submission and Revision' or potentially in the FAQ section.\n\nAction: Click [8]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To find detailed submission guidelines, the most relevant link appears to be \"Submit an Article\". Since we are seeking specific instructions about multi-language abstracts, this section will likely contain the necessary information.\n\nAction: Click [9]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The relevant information regarding the requirement for a multi-language abstract in submissions will likely be found in the section 'Title and abstract preparation', as this section is expected to provide instructions on how to prepare these elements of a submission.\n\nAction: Click [10]"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[2]: <input> \"Search\";\t[3]: \"Submission Guidelines\";\t[4]: \"Submission Preparation\";\t[5]: \"Formats for text of submission\";\t[6]: \"Formats for figures\";\t[7]: \"File names and case sensitivity\";\t[8]: \"Inclusion of ancillary files\";\t[9]: \"Title and abstract preparation\";\t[10]: \"Verify and correct your submission\";\t[11]: \"Edit or replace your submission\";\t[12]: \"Availability of submissions\";\t[13]: \"separate instructions for preparing the title and abstract\";\t[14]: \"Contact arXiv\nadministrators\";\t[15]: \"user page\";\t[16]: \"incomplete status\";\t[17]: \"availability\";\t[18]: \"versions\";\t[19]: \"current local\ntime\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The section pointed out by numerical label 13 says \"See separate instructions for preparing the title and abstract,\" which suggests that there is a specific page or document with the information we are looking for regarding the preparation of the title and abstract, including the requirement for a multi-language abstract.\n\nAction: Click [13]"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors.\";\t[3]: <input> \"Search\";\t[4]: \"Title and Abstract Fields\";\t[5]: \"Bad character(s)\";\t[6]: \"Information Fields\";\t[7]: \"Title: required\";\t[8]: \"Authors: required\";\t[9]: \"Abstract: required\";\t[10]: \"Comments:\";\t[11]: \"Report-no: required only when supplied by author's institution\";\t[12]: \"Category:\";\t[13]: \"Journal-ref:\";\t[14]: \"DOI:\";\t[15]: \"MSC-class:\";\t[16]: \"ACM-class:\";\t[17]: \"Are you an author of this paper?\";\t[18]: \"Note on La$\\TeX$ accent commands:\";\t[19]: \"Examples\";\t[20]: \"Example 1\";\t[21]: \"Example 2\";\t[23]: \"Metadata\";\t[24]: \"Title:\";\t[25]: \"Authors:\";\t[26]: \"Abstract:\";\t[27]: \"Comments:\";\t[28]: \"Report-no:\";\t[29]: \"Category:\";\t[30]: \"Journal-ref:\";\t[31]: \"DOI:\";\t[32]: \"MSC-class:\";\t[33]: \"ACM-class:\";\t[34]: \"Submissions in languages other than English\nand multiple language submissions\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The section labeled with numerical tag 34 titled \"Submissions in languages other than English and multiple language submissions\" is likely to contain the relevant information regarding whether a multi-language abstract is required for non-English submissions on arXiv.\n\nAction: Click [34]"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: \"We gratefully acknowledge support from the Simons Foundation, member institutions, and all contributors.\";\t[3]: <input> \"Search\";\t[4]: \"Submissions in Languages Other Than English and Multiple-Language Submissions\";\t[5]: \"Preparation of a multilingual abstract\";\t[6]: \"Articles with multiple versions in different languages\u2014TeX submissions\";\t[7]: \"Articles with multiple versions in different languages\u2014PDF submissions\";\t[9]: \"contact us\";\t[10]: <button> \"\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The section on \"Preparation of a multilingual abstract\" clearly states that submissions in languages other than English are accepted but require an English version of the abstract. It explains how to prepare English and alternate language abstracts, indicating that the abstracts must be separated as shown in the example given in the screenshot. This confirms that a multi-language abstract is indeed required for non-English submissions and that they should be separated by a line (\"-----\").\n\nAction: ANSWER; Line (\"-----\")"
+  }
+]

@@ -1,0 +1,111 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Find the cheapest available hotel room for a three night stay from 1st Jan in Jakarta. The room is for 2 adults, just answer the cheapest hotel room and the price.  Please interact with https://www.booking.com/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To start searching for a hotel in Jakarta, I need to input the desired destination in the 'Where are you going?' input field. The labeled element [15] corresponds to this textbox.\n\nAction: Type [15]; Jakarta"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The destination 'Jakarta' has been filled in the search box successfully. Now, to find the cheapest available hotel room for a three-night stay starting from 1st January, I must set the check-in and check-out dates. Since the calendar is visible, I need to select the check-in date, which corresponds to the label [60] for \"1 January 2024.\" I should then choose the checkout date, three days later, which would be [63] for \"4 January 2024.\"\n\nAction: Click [60]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The check-in date has been set to \"Mon 1 Jan.\" Now, I need to select the check-out date, which for a three-night stay would be \"4 January 2024.\" This corresponds to the label [63].\n\nAction: Click [63]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Both the check-in date (\"Mon 1 Jan\") and the check-out date (\"Thu 4 Jan\") are now correctly set for a three-night stay. The next step is to search for the available hotels by clicking the \"Search\" button, which corresponds to the label [99].\n\nAction: Click [99]"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search results are displayed, and there are various properties listed. However, the price and the button to check availability are not visible due to the cut-off image. To find the cheapest option, I would normally sort the list by the lowest price or look for a visible price in the screenshot. Since the relevant information isn't available in the current view, I will need to scroll down the page to discover more properties, which might include the cheapest one.\n\nAction: Scroll [WINDOW]; down"
+  },
+  {
+    "role": "user",
+    "content": "Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: In the current view of the search results, I can see hotels listed with their prices. The \"Grand Orchardz Hotel Kemayoran Jakarta\" has a price listed as US$115 for a three-night stay which seems to be the cheapest option visible here. However, to identify the absolute cheapest hotel room, I would normally continue to scroll through all the results or apply a price filter. Since scrolling might miss out on sorting or filtering options that would directly give us the lowest price, I should look for a sorting or filtering feature.\n\nAction: Scroll [WINDOW]; up\n"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"USD\", \"Prices in United States Dollar\";\t[4]: \"List your property\";\t[5]: \"Register\", \"Create an account\";\t[6]: \"Sign in\";\t[7]: \"Stays\";\t[8]: \"Flights\";\t[9]: \"Flight + Hotel\";\t[10]: \"Car rentals\";\t[11]: \"Cruises\";\t[12]: \"Attractions\";\t[13]: \"Airport taxis\";\t[14]: <input> \"Where are you going?\";\t[17]: <button> \"Mon 1 Jan\";\t[18]: \"\u2014\";\t[19]: <button> \"Thu 4 Jan\";\t[20]: <button> \"2 adults \u00b7 0 children \u00b7 1 room\";\t[21]: <button> \"Search\";\t[22]: \"Home\";\t[23]: \"Indonesia\";\t[24]: \"Jakarta Province\";\t[25]: \"Jakarta\";\t[26]: \"Search results\";\t[27]: <button> \"Show on map\";\t[29]: \"Breakfast included\";\t[30]: \"416\";\t[32]: \"Very good: 8+\";\t[33]: \"250\";\t[34]: \"Based on guest reviews\";\t[36]: \"Hotels\";\t[37]: \"622\";\t[39]: \"Apartments\";\t[40]: \"334\";\t[41]: <button> \"Sort by: Our top picks\";\t[42]: <button> \"All trips\";\t[45]: \"RedLiving Apartemen Jakarta Living Star - BoboRoomsOpens in new window\";\t[46]: \"East Jakarta, JakartaShow on map\";\t[47]: \"Entire apartment \u2022 1 bedroom \u2022 1 bathroom \u2022 236.8feet\u00b21 double bed\";\t[48]: \"Free cancellation\";\t[49]: \"No prepayment needed \u2013 pay at the property\";\t[50]: \"See availability\";\t[52]: \"Sans Hotel Puri Indah JakartaOpens in new window\";\t[53]: \"West Jakarta, JakartaShow on map\";\t[54]: \"8.2Very good 92 reviews\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Based on the screenshot, I can see the sorting options. It's important to sort the hotel search results by price to find the cheapest option. The button \"Sort by: Our top picks\" is labeled [41], which suggests that this is where I can change the sorting method.\n\nAction: Click [41]"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"USD\", \"Prices in United States Dollar\";\t[4]: \"List your property\";\t[5]: \"Register\", \"Create an account\";\t[6]: \"Sign in\";\t[7]: \"Stays\";\t[8]: \"Flights\";\t[9]: \"Flight + Hotel\";\t[10]: \"Car rentals\";\t[11]: \"Cruises\";\t[12]: \"Attractions\";\t[13]: \"Airport taxis\";\t[14]: <input> \"Where are you going?\";\t[17]: <button> \"Mon 1 Jan\";\t[18]: \"\u2014\";\t[19]: <button> \"Thu 4 Jan\";\t[20]: <button> \"2 adults \u00b7 0 children \u00b7 1 room\";\t[21]: <button> \"Search\";\t[22]: \"Home\";\t[23]: \"Indonesia\";\t[24]: \"Jakarta Province\";\t[25]: \"Jakarta\";\t[26]: \"Search results\";\t[27]: <button> \"Show on map\";\t[29]: \"Breakfast included\";\t[30]: \"416\";\t[32]: \"Very good: 8+\";\t[33]: \"250\";\t[34]: \"Based on guest reviews\";\t[36]: \"Hotels\";\t[37]: \"622\";\t[39]: \"Apartments\";\t[40]: \"334\";\t[41]: <button> \"Sort by: Our top picks\";\t[42]: <button> \"All trips\";\t[43]: \"RedLiving Apartemen Jakarta Living Star - BoboRoomsOpens in new window\";\t[44]: \"East Jakarta, JakartaShow on map\";\t[45]: \"Entire apartment \u2022 1 bedroom \u2022 1 bathroom \u2022 236.8feet\u00b21 double bed\";\t[46]: \"Free cancellation\";\t[47]: \"No prepayment needed \u2013 pay at the property\";\t[48]: \"See availability\";\t[49]: \"Sans Hotel Puri Indah JakartaOpens in new window\";\t[50]: \"West Jakarta, JakartaShow on map\";\t[51]: \"8.2Very good 92 reviews\";\t[52]: <button> \"Our top picks\";\t[53]: <button> \"Homes & apartments first\";\t[54]: <button> \"Price (lowest first)\";\t[55]: <button> \"Best reviewed and lowest price\";\t[56]: <button> \"Property rating (high to low)\";\t[57]: <button> \"Property rating (low to high)\";\t[58]: <button> \"Property rating and price\";\t[59]: <button> \"Distance from city centre\";\t[60]: <button> \"Top reviewed\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: Now I can see the sorting options for the search results. To find the cheapest hotel room, I need to select the \"Price (lowest first)\" sorting option, which is labeled [54].\n\nAction: Click [54]"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[1]: <button> \"USD\", \"Prices in United States Dollar\";\t[4]: \"List your property\";\t[5]: \"Register\", \"Create an account\";\t[6]: \"Sign in\";\t[7]: \"Stays\";\t[8]: \"Flights\";\t[9]: \"Flight + Hotel\";\t[10]: \"Car rentals\";\t[11]: \"Cruises\";\t[12]: \"Attractions\";\t[13]: \"Airport taxis\";\t[14]: <input> \"Where are you going?\";\t[17]: <button> \"Mon 1 Jan\";\t[18]: \"\u2014\";\t[19]: <button> \"Thu 4 Jan\";\t[20]: <button> \"2 adults \u00b7 0 children \u00b7 1 room\";\t[21]: <button> \"Search\";\t[22]: \"Home\";\t[23]: \"Indonesia\";\t[24]: \"Jakarta Province\";\t[25]: \"Jakarta\";\t[26]: \"Search results\";\t[27]: <button> \"Show on map\";\t[29]: \"Breakfast included\";\t[30]: \"416\";\t[32]: \"Very good: 8+\";\t[33]: \"250\";\t[34]: \"Based on guest reviews\";\t[36]: \"Hotels\";\t[37]: \"622\";\t[39]: \"Apartments\";\t[40]: \"334\";\t[41]: <button> \"Sort by: Price (lowest first)\";\t[42]: <button> \"All trips\";\t[45]: \"OYO 3755 Sweet HomeOpens in new window\";\t[46]: \"West Jakarta, JakartaShow on map\";\t[47]: \"2.4Review score 7 reviews\";\t[48]: \"1 large double bed\";\t[49]: \"Free cancellation\";\t[50]: \"See availability\";\t[53]: \"OYO 91421 Bridjo Populer SyariahOpens in new window\";\t[54]: \"Central Jakarta, JakartaShow on map\";\t[55]: \"2.8Review score 6 reviews\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The search results are now sorted by the lowest price first with \"OYO 3755 Sweet Home\" as the first listing. This property is available at a price of US$14 for a three-night stay, making it the cheapest option visible in the screenshot.\n\nAction: ANSWER; The cheapest hotel room is at OYO 3755 Sweet Home for US$14 for a three-night stay."
+  }
+]

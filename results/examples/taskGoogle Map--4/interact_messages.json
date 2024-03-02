@@ -1,0 +1,71 @@
+[
+  {
+    "role": "system",
+    "content": "Imagine you are a robot browsing the web, just like humans. Now you need to complete a task. In each iteration, you will receive an Observation that includes a screenshot of a webpage and some texts. This screenshot will feature Numerical Labels placed in the TOP LEFT corner of each Web Element.\nCarefully analyze the visual information to identify the Numerical Label corresponding to the Web Element that requires interaction, then follow the guidelines and choose one of the following actions:\n1. Click a Web Element.\n2. Delete existing content in a textbox and then type content. \n3. Scroll up or down. Multiple scrolls are allowed to browse the webpage. Pay attention!! The default scroll is the whole window. If the scroll widget is located in a certain area of the webpage, then you have to specify a Web Element in that area. I would hover the mouse there and then scroll.\n4. Wait. Typically used to wait for unfinished webpage processes, with a duration of 5 seconds.\n5. Go back, returning to the previous webpage.\n6. Google, directly jump to the Google search page. When you can't find information in some websites, try starting over with Google.\n7. Answer. This action should only be chosen when all questions in the task have been solved.\n\nCorrespondingly, Action should STRICTLY follow the format:\n- Click [Numerical_Label]\n- Type [Numerical_Label]; [Content]\n- Scroll [Numerical_Label or WINDOW]; [up or down]\n- Wait\n- GoBack\n- Google\n- ANSWER; [content]\n\nKey Guidelines You MUST follow:\n* Action guidelines *\n1) To input text, NO need to click textbox first, directly type content. After typing, the system automatically hits `ENTER` key. Sometimes you should click the search button to apply search filters. Try to use simple language when searching.  \n2) You must Distinguish between textbox and search button, don't type content into the button! If no textbox is found, you may need to click the search button first before the textbox is displayed. \n3) Execute only one action per iteration. \n4) STRICTLY Avoid repeating the same action if the webpage remains unchanged. You may have selected the wrong web element or numerical label. Continuous use of the Wait is also NOT allowed.\n5) When a complex Task involves multiple questions or steps, select \"ANSWER\" only at the very end, after addressing all of these questions (steps). Flexibly combine your own abilities with the information in the web page. Double check the formatting requirements in the task when ANSWER. \n* Web Browsing Guidelines *\n1) Don't interact with useless web elements like Login, Sign-in, donation that appear in Webpages. Pay attention to Key Web Elements like search textbox and menu.\n2) Vsit video websites like YouTube is allowed BUT you can't play videos. Clicking to download PDF is allowed and will be analyzed by the Assistant API.\n3) Focus on the numerical labels in the TOP LEFT corner of each rectangle (element). Ensure you don't mix them up with other numbers (e.g. Calendar) on the page.\n4) Focus on the date in task, you must look for results that match the date. It may be necessary to find the correct year, month and day at calendar.\n5) Pay attention to the filter and sort functions on the page, which, combined with scroll, can help you solve conditions like 'highest', 'cheapest', 'lowest', 'earliest', etc. Try your best to find the answer that best fits the task.\n\nYour reply should strictly follow the format:\nThought: {Your brief thoughts (briefly summarize the info that will help ANSWER)}\nAction: {One Action format you choose}\n\nThen the User will provide:\nObservation: {A labeled screenshot Given by User}"
+  },
+  {
+    "role": "user",
+    "content": "Now given a task: Plan a trip from Boston Logan Airport to North Station.  Please interact with https://www.google.com/maps/ and get the answer.Observation: A screenshot and some texts. (Omitted in context.)"
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: To plan a trip from Boston Logan Airport to North Station using Google Maps, it is necessary to input the starting location and the destination. The screenshot shows the Google Maps interface with various web elements labeled, among which Element 0 is identified as a textbox and Element 2 is for directions, which is likely to be used after entering the locations.\n\nAction: Click [2]"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"\";\t[1]: <button> \"\";\t[2]: <button> \"\";\t[3]: <button> \"\";\t[4]: <button> \"\";\t[5]: <button> \"\";\t[6]: <button> \"\ue5cd\", \"Close directions\";\t[7]: <input> \"Choose starting point, or click on the map...\";\t[8]: <button> \"\ue8b6\", \"Search\";\t[9]: <input> \"Choose destination...\";\t[10]: <button> \"\ue8d5\", \"Reverse starting point and destination\";\t[11]: \"\ue55c\", \"Your location\";\t[12]: \"Your location\";\t[13]: <button> \"Menu\";\t[14]: <button> \"Saved\";\t[15]: <button> \"Recents\";\t[16]: <button> \"Collapse side panel\";\t[18]: \"Sign in\";\t[19]: <button> \"Show Your Location\";\t[20]: <button> \"Zoom in\";\t[21]: <button> \"Zoom out\";\t[22]: <button> \"Show Street View coverage\";\t[23]: <button> \"\";\t[24]: <button> \"United States\";\t[25]: <button> \"Terms\";\t[26]: <button> \"Privacy\";\t[27]: <button> \"Send Product Feedback\";\t[28]: <button> \"1000 mi\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The screenshot shows the Google Maps directions feature, with input fields for starting point and destination. Element 7 is a textbox prompting for the starting point, and Element 9 is a textbox prompting for the destination. Since the task is to plan a trip from Boston Logan Airport to North Station, the next logical step would be to enter Boston Logan Airport as the starting point.\n\nAction: Type [7]; Boston Logan Airport"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"\";\t[1]: <button> \"\";\t[2]: <button> \"\";\t[3]: <button> \"\";\t[4]: <button> \"\";\t[5]: <button> \"\";\t[6]: <button> \"\ue5cd\", \"Close directions\";\t[7]: <input> \"Starting point Boston Logan Airport\";\t[8]: <input> \"Choose destination, or click on the map...\";\t[9]: <button> \"\ue8b6\", \"Search\";\t[10]: <button> \"\ue8d5\", \"Reverse starting point and destination\";\t[11]: \"\ue55c\", \"Your location\";\t[12]: \"Your location\";\t[13]: <button> \"Menu\";\t[14]: <button> \"Saved\";\t[15]: <button> \"Recents\";\t[16]: <button> \"Collapse side panel\";\t[18]: \"Sign in\";\t[19]: <button> \"Show Your Location\";\t[20]: <button> \"Zoom in\";\t[21]: <button> \"Zoom out\";\t[22]: <button> \"Show Street View coverage\";\t[23]: <button> \"\";\t[24]: <button> \"United States\";\t[25]: <button> \"Terms\";\t[26]: <button> \"Privacy\";\t[27]: <button> \"Send Product Feedback\";\t[28]: <button> \"1000 mi\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The starting point \"Boston Logan Airport\" has been successfully entered into the textbox for the starting point, as seen in the screenshot. The next step is to enter the destination, which is \"North Station.\" Element 8 is a textbox that prompts for the destination.\n\nAction: Type [8]; North Station"
+  },
+  {
+    "role": "user",
+    "content": [
+      {
+        "type": "text",
+        "text": "Observation: please analyze the attached screenshot and give the Thought and Action. I've provided the tag name of each element and the text it contains (if text exists). Note that <textarea> or <input> may be textbox, but not exactly. Please focus more on the screenshot and then refer to the textual information.\n[0]: <button> \"Best\";\t[1]: <button> \"8 min\";\t[2]: <button> \"56 min\";\t[3]: <button> \"53 min\";\t[4]: <button> \"23 min\";\t[5]: <button> \"\";\t[6]: <button> \"\ue5cd\", \"Close directions\";\t[7]: <input> \"Starting point Boston Logan International Airport\";\t[8]: <input> \"Destination North Station, 135 Causeway St, Boston, MA 02114\";\t[9]: <button> \"\ue8d5\", \"Reverse starting point and destination\";\t[10]: <button> \"\ue147 Add destination\";\t[11]: <button> \"\ue546Gas\", \"Add gas stations along route\";\t[12]: <button> \"\ue56dEV charging\", \"Add electric vehicle charging stations along route\";\t[13]: <button> \"\ue53aHotels\", \"Add hotels along route\";\t[14]: <button> \"Next page\";\t[15]: <button> \"Menu\";\t[16]: <button> \"Saved\";\t[17]: <button> \"Recents\";\t[18]: <button> \"\ue52e North Station 8 min\";\t[19]: <button> \"Boston Logan International Airport\";\t[20]: <button> \"North Station\";\t[21]: <button> \"Options\";\t[22]: <button> \"\ue702Send directions to your phone\";\t[23]: \"\ue531\", \"Driving\";\t[24]: \"8 min\";\t[25]: \"3.4 miles\";\t[26]: \"via MA-1A S\";\t[27]: \"Fastest route now due to traffic conditions\";\t[29]: \"This route has tolls.\";\t[30]: <button> \"Details\";\t[31]: \"\ue5318 min3.8 milesvia Airport Rd - Arrival Level and MA-1A S\";\t[32]: \"\ue5319 min3.8 milesvia Service Rd and MA-1A S\";\t[33]: <button> \"Collapse side panel\";\t[35]: \"Sign in\";\t[36]: <button> \"Show Your Location\";\t[37]: <button> \"Zoom in\";\t[38]: <button> \"Zoom out\";\t[39]: <button> \"Show Street View coverage\";\t[40]: <button> \"\";\t[41]: <button> \"United States\";\t[42]: <button> \"Terms\";\t[43]: <button> \"Privacy\";\t[44]: <button> \"Send Product Feedback\";\t[45]: <button> \"1 mi\";"
+      },
+      {
+        "type": "image_url",
+        "image_url": {
+          "url": "data:image/png;base64,{b64_img}"
+        }
+      }
+    ]
+  },
+  {
+    "role": "assistant",
+    "content": "Thought: The directions from Boston Logan International Airport to North Station have been successfully generated, showing multiple route options with their respective times. The fastest route appears to be 8 minutes long via MA-1A S. This is the information needed to complete the task.\n\nAction: ANSWER; The fastest route from Boston Logan International Airport to North Station is via MA-1A S and takes approximately 8 minutes in current traffic conditions."
+  }
+]

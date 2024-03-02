@@ -1,0 +1,5 @@
+*.log
+downloads/*.pdf
+results/2024*
+test_code.py
+__pycache__
